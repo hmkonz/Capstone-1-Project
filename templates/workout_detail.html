@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block header %}
+<h2 class="selected-exercises">
+  {{workout.workout_date.strftime("%A %b %d %Y")}} Workout!
+</h2>
+{% endblock %} {% block content %}
+<br />
+
+{% for exercise in workout.exercises %}
+<ul>
+  <li class="workout_exercise">
+    <a
+      href="/exercises/{{exercise.name}}?member_id={{g.member.id}}&workout_id={{workout.id}}"
+      class="exercise-selected"
+      >{{exercise.name}}</a
+    >
+  </li>
+</ul>
+
+{% endfor %}
+<br />
+<br />
+<br />
+
+<a href="/members/{{member_id}}" class="return-to-log-of-workouts-button"
+  >Return to Log of Workouts</a
+>{% endblock %}

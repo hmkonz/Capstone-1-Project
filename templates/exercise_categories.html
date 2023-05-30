@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+
+{% block header %}
+
+{% if type=='cardio' %}
+<h2 class="list-of-cardio-exercises">{{name}} Exercises</h2>
+
+{% elif type=='olympic_weightlifting' %}
+<h2 class="list-of-olympic-weightlifting-exercises">{{name}} Exercises</h2>
+
+{% elif type=='plyometrics' %}
+<h2 class="list-of-plyometric-exercises">{{name}} Exercises</h2>
+
+{% elif type=='powerlifting' %}
+<h2 class="list-of-powerlifting-exercises">{{name}} Exercises</h2>
+
+{% elif type=='strength' %}
+<h2 class="list-of-strength-exercises">{{name}} Exercises</h2>
+
+{% elif type=='stretching' %}
+<h2 class="list-of-stretching-exercises">{{name}} Exercises</h2>
+
+{% elif type=='strongman' %}
+<h2 class="list-of-strongman-exercises">{{name}} Exercises</h2>
+
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h3 class="exercise-header">**** Click on an Exercise for Options/More Details ****</h3>
+</br>
+
+
+  {% for exercise in results %}
+
+  {%if exercise %}
+    <ul>
+      <li class="exercise-list">
+      <div>
+          <a class="exercise" href="/exercises/{{exercise.name}}?type={{type}}"><b><font size="+1">
+            {{exercise.name}}</b></font></a>  
+      </div>
+      <br />
+      </li>
+    </ul>
+    {% endif %}
+  {% endfor %}
+<br>
+<a href="/" class="return-button">Return to previous page</a>
+
+{% endblock %}

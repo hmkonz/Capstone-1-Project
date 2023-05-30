@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block header %}
+<h2 class="date">{{date}} Workout!</h2>
+{% endblock %} {% block content %}
+
+<br />
+
+{% for exercise in workout.exercises %}
+<ul class="workout_exercise1">
+  <li class="workout_exercise">
+    <a href="/exercises/{{exercise.name}}" class="exercise-selected"
+      >{{exercise.name}}</a
+    >
+  </li>
+</ul>
+
+{% endfor %}
+<br />
+
+<a href="/exercises" class="return-to-exercise-options-page-button"
+  >Add Another Exercise to Today's Workout</a
+>
+{% endblock %}

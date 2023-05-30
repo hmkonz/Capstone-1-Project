@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block header %}
+<h2 class="selected-exercises">{{name}}</h2>
+{% endblock %} {% block content %}
+
+<form action="/members/{{member.id}}/workout_page" method="POST">
+  <input type="hidden" name="type" value="{{type}}" />
+  <ul class="exercises">
+    {% for exercise in results %}
+
+    <li class="exercises_with_checkboxes">
+      <ul>
+        <label for="exercise1" class="custom-control-label">
+          <u> {{exercise.name}}</u>
+        </label>
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="type-of-exercise"
+          value="{{exercise.name}}"
+        />
+
+        <li>Muscle Group Worked: {{exercise.muscle}}</li>
+        <li>Equipment Required: {{exercise.equipment}}</li>
+        <li>Difficulty Level: {{exercise.difficulty}}</li>
+        {% if exercise.instructions == "" %}
+        <li>Instructions: None Given</li>
+        {% else %}
+        <li>Instructions: {{exercise.instructions}}</li>
+        {% endif %}
+      </ul>
+      <br />
+    </li>
+    {% endfor %}
+  </ul>
+  <button class="exercise-submit-btn">Add to Today's Workout!</button>
+  >
+  <br />
+  <br />
+</form>
+<p class="OR">OR</p>
+
+<a href="/exercises/{{type}}" class="return-to-exercise-options-page-button">
+  Return to Exercise Options Page</a
+>
+
+{% endblock %}

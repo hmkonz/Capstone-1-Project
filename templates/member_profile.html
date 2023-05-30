@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% block header %}
+<h2 class="selected-exercises">{{member.first_name}} {{member.last_name}}</h2>
+{% endblock %} {% block content %}
+
+<div class="row">
+  <div class="col-sm-2 col-6">
+    <p class="member-bio">{{g.member.bio}}</p>
+
+    {% if g.member.location %}
+    <p class="member-location">I live in: {{g.member.location}}</p>
+    {% else %}
+    <p class="member-location">I live in: unknown</p>
+    {% endif %}
+
+    <img src="{{member.image_url}}" alt="" class="img-profile" />
+  </div>
+
+  <div class="col-sm-10 col-12">
+    <form>
+      <h2 class="mt-4">Log of Workouts</h2>
+      <br />
+      <br />
+      <ul>
+        {% if workouts %} {% for workout in workouts %}
+        <li class="workout_date1">
+          <a
+            href="/members/{{member.id}}/workouts/{{workout.id}}"
+            class="workout_date2"
+            ><font size="+1"
+              >{{workout.workout_date.strftime("%A %b %d %Y")}}</font
+            ></a
+          >
+        </li>
+        {% endfor %} {% endif %}
+      </ul>
+
+      <button
+        class="edit-profile-btn1"
+        formaction="/members/{{member.id}}/edit"
+        formmethod="GET"
+      >
+        Edit Profile
+      </button>
+      <button
+        class="delete-profile-btn"
+        formaction="/members/delete"
+        formmethod="POST"
+      >
+        Cancel Membership
+      </button>
+    </form>
+    <br />
+    <a href="/" class="return-to-exercise-page-btn">Return to Exercise Page </a>
+  </div>
+</div>
+{% endblock %}

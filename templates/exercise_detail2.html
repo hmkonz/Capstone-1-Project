@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block header %}
+<h2 class="selected-exercises">{{name}} Details</h2>
+{% endblock %} {% block content %}
+
+<ul class="exercises">
+  <li>
+    <ul>
+      <p style="font-size: 22px">{{exercise.name}}</p>
+
+      <li>Muscle Group Worked: {{exercise.muscle}}</li>
+      <li>Equipment Required: {{exercise.equipment}}</li>
+      <li>Difficulty Level: {{exercise.difficulty}}</li>
+      {% if exercise.instructions == "" %}
+      <li>Instructions: None Given</li>
+      {% else %}
+      <li>Instructions: {{exercise.instructions}}</li>
+      {% endif %}
+    </ul>
+    <br />
+  </li>
+</ul>
+
+{% if workout_id %}
+<a
+  href="/members/{{member_id}}/workouts/{{workout_id}}"
+  class="return-to-workout-page-button"
+>
+  Return to Previous Page</a
+>
+{% else %}
+<a
+  href="/members/{{member_id}}/workout_page"
+  class="return-to-workout-page-button"
+>
+  Return to Today's Workout Page</a
+>
+{% endif %} {% endblock %}
